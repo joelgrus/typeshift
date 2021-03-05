@@ -2,6 +2,8 @@
 This contains the code for solving puzzles
 using the `Constraint = bitarray` 
 representation (but still the naive BFS method)
+
+time python typeshift/talk2.py awful bread climb empty hello knock light music north
 """
 
 from __future__ import annotations
@@ -14,7 +16,7 @@ from string import ascii_lowercase
 
 from bitarray import bitarray
 
-from typeshift.words import words
+from typeshift.words import common_words as words
 
 Constraint = bitarray
 Constraints = List[Constraint]
@@ -118,10 +120,14 @@ def solve2(game: List[str]) -> List[str]:
 
 if __name__ == "__main__":
     import sys
-    max_words = int(sys.argv[1]) if len(sys.argv) > 1 else -1
 
-    game = ['cameo', 'heels', 'ovens', 'rapid', 'trade', 'wards']
-    game = ['awful', 'bread', 'climb', 'empty', 'hello', 'knock', 'light', 'music', 'often', 'range', 'staff', 'throw', 'young']
-    game = game[:max_words]
+    if len(sys.argv) == 1:
+        game = ['awful', 'bread', 'climb', 'empty', 'hello', 'knock', 'light', 'music', 'often', 'range', 'staff', 'throw', 'young']
+    else:
+        game = sys.argv[1:]
+
+    #game = ['cameo', 'heels', 'ovens', 'rapid', 'trade', 'wards']
+    # game = game[:max_words]
+    # print(game)
     puzz = Spec.from_words(game)
     print(puzz.minimal_solution())

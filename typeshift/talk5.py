@@ -2,9 +2,12 @@
 contains code for finding the most "satisfying" games;
 that is, for a given (word_length, num_words) combination,
 the "parsimonious" game with the most valid words in it
+
+python typeshift/talk5.py 3
 """
 
 from __future__ import annotations
+from typeshift.talk4 import maximal_puzzle
 
 from typing import List, Set, Optional, NamedTuple, Iterable
 import itertools
@@ -86,3 +89,15 @@ def most_satisfying(word_length: int, num_words: int = 3) -> List[str]:
 
 
     # last, pine, rock
+
+
+if __name__ == "__main__":
+    import sys
+    word_length = int(sys.argv[1])
+    num_words = int(sys.argv[2])
+
+    game = most_satisfying(word_length, num_words)
+
+    spec = Spec.from_words(game)
+    print(game)
+    print(spec.brute_force())

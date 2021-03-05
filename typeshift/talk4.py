@@ -2,6 +2,8 @@
 This contains the code for finding maximal 
 "parsimonious" games -- that is, games with
 no excess characters.
+
+python typeshift/talk4.py 4 10000
 """
 
 from __future__ import annotations
@@ -184,3 +186,15 @@ def greedy_puzzle(word_length: int) -> List[str]:
                             for c, used in zip(word, used_letters)]
 
     return sorted(game)
+
+
+if __name__ == "__main__":
+    import sys
+    word_length = int(sys.argv[1])
+    niter = int(sys.argv[2])
+
+    best = max((greedy_puzzle(word_length) for _ in range(niter)), key=len)
+    print(len(best), best)
+
+
+

@@ -2,6 +2,8 @@
 This contains the code for solving puzzles
 using a priority queue to pick at each step
 the puzzle with the fewest "excess characters"
+
+time python typeshift/talk3.py awful bread climb empty hello knock light music north
 """
 
 
@@ -16,7 +18,7 @@ from string import ascii_lowercase
 
 from bitarray import bitarray
 
-from typeshift.words import words
+from typeshift.words import common_words as words
 
 Constraint = bitarray
 Constraints = List[Constraint]
@@ -137,11 +139,14 @@ def solve3(game: List[str]) -> List[str]:
 
 if __name__ == "__main__":
     import sys
-    max_words = int(sys.argv[1]) if len(sys.argv) > 1 else -1
 
-    game = ['cameo', 'heels', 'ovens', 'rapid', 'trade', 'wards']
-    game = ['awful', 'bread', 'climb', 'empty', 'hello', 'knock', 'light', 'music', 'often', 'range', 'staff', 'throw', 'young']
-    game = game[:max_words]
-    print(game)
+    if len(sys.argv) == 1:
+        game = ['awful', 'bread', 'climb', 'empty', 'hello', 'knock', 'light', 'music', 'often', 'range', 'staff', 'throw', 'young']
+    else:
+        game = sys.argv[1:]
+
+    #game = ['cameo', 'heels', 'ovens', 'rapid', 'trade', 'wards']
+    # game = game[:max_words]
+    # print(game)
     puzz = Spec.from_words(game)
     print(puzz.minimal_solution())
